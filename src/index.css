@@ -123,3 +123,14 @@ span {
   margin-top: 0.3rem;
   font-size: 1.4rem;
 }
+
+.result {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+  background-color: #fff;
+  height: fit-content;
+  padding: 2rem 3rem;
+  border-radius: 0.5rem;
+}

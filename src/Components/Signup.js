@@ -2,7 +2,10 @@ import React, { Fragment } from "react";
 
 import { validationSchema } from "./validateSignup";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
+// Context
+import { useUsers } from "../Providers/user_context";
 
 const selectOptions = [
   { value: "", label: "از چه طریقی با ما آشنا شدید ؟" },
@@ -35,8 +38,12 @@ const initialValues = {
 };
 
 const Signup = () => {
+  const { dispatch } = useUsers();
+  const history = useHistory();
+
   const onSubmit = (values) => {
-    console.log(values);
+    dispatch({ type: "SEND_DATA", payload: values });
+    history.push("/user");
   };
 
   const formik = useFormik({
