@@ -128,9 +128,34 @@ span {
   display: flex;
   align-items: center;
   flex-direction: column;
+  gap: 1rem;
   margin-top: 2rem;
   background-color: #fff;
   height: fit-content;
   padding: 2rem 3rem;
   border-radius: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  form {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 55%;
+  }
+  form {
+    width: 70vw;
+  }
+}
+
+@media (max-width: 576px) {
+  html {
+    font-size: 50%;
+  }
+  form {
+    width: 90vw;
+  }
 }
