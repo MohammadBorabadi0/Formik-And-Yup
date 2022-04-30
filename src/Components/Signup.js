@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { validationSchema } from "./validate";
+import { validationSchema } from "./validateSignup";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 
@@ -14,6 +14,11 @@ const selectOptions = [
 const checkBoxOptions = [
   { value: "جاوا", label: "جاوا" },
   { value: "پایتون", label: "پایتون" },
+];
+
+const radioOptions = [
+  { value: "0", label: "زن" },
+  { value: "1", label: "مرد" },
 ];
 
 // initialValues
@@ -52,15 +57,33 @@ const Signup = () => {
   } = formik;
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <header className="header">
         <h2>فرم ثبت نام</h2>
       </header>
       <div className="form-control">
-        <input type="text" placeholder="نام" name="name" id="name" />
+        <input
+          type="text"
+          placeholder="نام"
+          name="name"
+          id="name"
+          value={values.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.name && touched.name && <span>{errors.name}</span>}
       </div>
       <div className="form-control">
-        <input type="email" placeholder="ایمیل" name="email" id="email" />
+        <input
+          type="email"
+          placeholder="ایمیل"
+          name="email"
+          id="email"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.email && touched.email && <span>{errors.email}</span>}
       </div>
       <div className="form-control">
         <input
@@ -68,7 +91,11 @@ const Signup = () => {
           placeholder="شماره موبایل"
           name="mobile"
           id="mobile"
+          value={values.mobile}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {errors.mobile && touched.mobile && <span>{errors.mobile}</span>}
       </div>
       <div className="form-control">
         <input
@@ -76,7 +103,11 @@ const Signup = () => {
           placeholder="رمز عبور"
           name="password"
           id="password"
+          value={values.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {errors.password && touched.password && <span>{errors.password}</span>}
       </div>
       <div className="form-control">
         <input
@@ -84,44 +115,86 @@ const Signup = () => {
           placeholder="تکرار رمز عبور"
           name="confirmPassword"
           id="confirmPassword"
+          value={values.confirmPassword}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {errors.confirmPassword && touched.confirmPassword && (
+          <span>{errors.confirmPassword}</span>
+        )}
       </div>
       <div className="form-control">
         <div className="field">
-          <input type="radio" id="female" name="gender" />
-          <label htmlFor="female">زن</label>
-          <input type="radio" id="male" name="gender" />
-          <label htmlFor="male">مرد</label>
+          {radioOptions.map((item, index) => (
+            <Fragment key={index}>
+              <input
+                type="radio"
+                id={item.label}
+                name="gender"
+                value={item.value}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={values.gender === item.value}
+              />
+              <label htmlFor={item.label}>{item.label}</label>
+            </Fragment>
+          ))}
         </div>
+        {errors.gender && touched.gender && <span>{errors.gender}</span>}
       </div>
       <div className="form-control">
-        <select name="media">
+        <select
+          name="media"
+          value={values.media}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        >
           {selectOptions.map((item, index) => (
             <option value={item.value} key={index}>
               {item.label}
             </option>
           ))}
         </select>
+        {errors.media && touched.media && <span>{errors.media}</span>}
       </div>
       <div className="form-control">
         <div className="field">
           <h3>علاقه مندی ها : </h3>
           {checkBoxOptions.map((item, index) => (
             <Fragment key={index}>
-              <input type="checkbox" id={item.label} name="intrests" />
+              <input
+                type="checkbox"
+                id={item.label}
+                name="intrests"
+                value={item.value}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={values.intrests.includes(item.value)}
+              />
               <label htmlFor={item.label}>{item.label}</label>
             </Fragment>
           ))}
         </div>
+        {errors.intrests && touched.intrests && <span>{errors.intrests}</span>}
       </div>
       <div className="form-control">
         <div className="field">
-          <input type="checkbox" name="terms" id="terms" />
+          <input
+            type="checkbox"
+            name="terms"
+            id="terms"
+            value={values.terms}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
           <label htmlFor="terms">با قوانین و شرایط سایت موافقم.</label>
         </div>
+        {errors.terms && touched.terms && <span>{errors.terms}</span>}
       </div>
       <div className="form-control">
-        <button type="submit">ثبت نام</button>
+        <button type="submit" disabled={!isValid}>
+          ثبت نام
+        </button>
       </div>
       <div className="field">
         قبلا ثبت نام کرده اید؟ <Link to="/login">ورود</Link>
