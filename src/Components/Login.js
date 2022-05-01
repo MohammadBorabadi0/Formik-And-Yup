@@ -43,6 +43,7 @@ const Login = () => {
           placeholder="ایمیل"
           name="email"
           id="email"
+          className={`${errors.email && touched.email && "error"}`}
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -55,6 +56,7 @@ const Login = () => {
           placeholder="رمز عبور"
           name="password"
           id="password"
+          className={`${errors.password && touched.password && "error"}`}
           value={values.password}
           onChange={handleChange}
           onBlur={handleBlur}

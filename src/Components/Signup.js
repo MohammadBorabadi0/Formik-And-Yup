@@ -74,6 +74,7 @@ const Signup = () => {
           placeholder="نام"
           name="name"
           id="name"
+          className={`${errors.name && touched.name && "error"}`}
           value={values.name}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -86,6 +87,7 @@ const Signup = () => {
           placeholder="ایمیل"
           name="email"
           id="email"
+          className={`${errors.email && touched.email && "error"}`}
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -98,6 +100,7 @@ const Signup = () => {
           placeholder="شماره موبایل"
           name="mobile"
           id="mobile"
+          className={`${errors.mobile && touched.mobile && "error"}`}
           value={values.mobile}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -110,6 +113,7 @@ const Signup = () => {
           placeholder="رمز عبور"
           name="password"
           id="password"
+          className={`${errors.password && touched.password && "error"}`}
           value={values.password}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -122,6 +126,9 @@ const Signup = () => {
           placeholder="تکرار رمز عبور"
           name="confirmPassword"
           id="confirmPassword"
+          className={`${
+            errors.confirmPassword && touched.confirmPassword && "error"
+          }`}
           value={values.confirmPassword}
           onChange={handleChange}
           onBlur={handleBlur}

@@ -136,6 +136,10 @@ span {
   border-radius: 0.5rem;
 }
 
+.form-control input.error {
+  border: 2px solid rgb(250, 5, 5);
+}
+
 @media (max-width: 1024px) {
   form {
     width: 60vw;
